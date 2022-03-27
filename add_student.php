@@ -44,7 +44,9 @@ if (isset($_POST['submit'])) {
                          $done = mysqli_query($conn, "insert into student(roll_no, name, email, phone, address, branch, semester) values('$rollNo', '$name','$email', '$phone', '$address', '$branch', '$semester')");
                          if ($done) {
                               $_SESSION['added'] = "yes";
-                              header("location: view_student1.php");
+                              $_SESSION['branch'] = $branch;
+                              $_SESSION['semester'] = $semester;
+                              header("location: view_student2.php");
                          } else {
                               function_alert("Something went wrong");
                          }

@@ -4,6 +4,19 @@ $title = "View Students";
 require_once "web_config/config.php";
 include('master_page/header.php');
 
+function function_alert($message)
+{
+     // Display the alert box 
+     echo "<script>alert('$message');</script>";
+}
+// Function call
+// function_alert("Welcome to Geeks for Geeks");
+
+if (isset($_SESSION['added'])) {
+     function_alert("Students added successfuly.");
+     unset($_SESSION['added']);
+}
+
 ?>
 
 <div style="margin-top: 15px;">

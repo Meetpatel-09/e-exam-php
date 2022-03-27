@@ -26,6 +26,22 @@ while ($row = mysqli_fetch_array($sql1)) {
      $subject = $row['subject'];
 }
 
+
+if (isset($_POST['approve'])) {
+     $sql = "UPDATE mcq_bank SET is_approved = '1' WHERE mcq_bank_id = '$mcqBankId'";
+
+     $result = mysqli_query($conn, $sql);
+
+     if ($result) {
+          function_alert("MCQ Bank Approved.");
+     } else {
+          function_alert("Something went wrong!!!");
+     }
+}
+if (isset($_POST['reject'])) {
+}
+
+
 ?>
 
 <div style="margin-top: 15px;">
@@ -45,7 +61,9 @@ while ($row = mysqli_fetch_array($sql1)) {
                     ?>
                          <div class="scp-quizzes-main">
                               <div class="scp-quizzes-data">
-                                   <h3><?php echo $i; echo ". "; echo $row['question'] ?></h3>
+                                   <h3><?php echo $i;
+                                        echo ". ";
+                                        echo $row['question'] ?></h3>
                                    <input type="radio" name="question<?php echo $i ?>">
                                    <label>A. <?php echo $row['option_a'] ?></label><br />
                                    <input type="radio" name="question<?php echo $i ?>">
@@ -63,14 +81,16 @@ while ($row = mysqli_fetch_array($sql1)) {
                     if (isset($_SESSION['admin_email'])) {
 
                     ?>
-                         <div class="row" style="text-align: center">
-                              <div class="col" style="text-align: center">
-                                   <button type="submit" class="btn btn-success col-md-3">Approve</button>
+                         <form action="" method="post">
+                              <div class="row" style="text-align: center">
+                                   <div class="col" style="text-align: center">
+                                        <button type="submit" name="approve" class="btn btn-success col-md-3">Approve</button>
+                                   </div>
+                                   <div class="col" style="text-align: center">
+                                        <button type="submit" name="reject" class="btn btn-danger col-md-3">Reject</button>
+                                   </div>
                               </div>
-                              <div class="col" style="text-align: center">
-                                   <button type="submit" class="btn btn-danger col-md-3">Reject</button>
-                              </div>
-                         </div>
+                         </form>
                     <?php
                     }
                     ?>

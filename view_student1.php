@@ -3,19 +3,6 @@ $title = "View Students";
 
 include('master_page/header.php');
 
-function function_alert($message)
-{
-     // Display the alert box 
-     echo "<script>alert('$message');</script>";
-}
-// Function call
-// function_alert("Welcome to Geeks for Geeks");
-
-if (isset($_SESSION['added'])) {
-     function_alert("Students added successfuly.");
-     unset($_SESSION['added']);
-}
-
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
