@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                               $isSent = "false";
                          }
                          $_SESSION['otp'] = $otp;
-                         $_SESSION['staff_email'] = $email;
+                         $_SESSION['staff_e'] = $email;
                          $_SESSION['is_sent'] = $isSent;
                          header("location: otp_verify.php");
                     } else {

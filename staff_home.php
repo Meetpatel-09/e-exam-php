@@ -1,6 +1,6 @@
 <?php
 
-$title = "View Students";
+$title = "Home";
 require_once "web_config/config.php";
 include('master_page/header.php');
 
@@ -56,7 +56,7 @@ function function_alert($message)
 				<img src="images/qb.png" class="card-img-top" alt="...">
 				<div class="card-body">
 					<a href="add_mcq_bank1.php" class="btn btn-primary">Add MCQ Bank</a>
-					<a href="" class="btn btn-primary">View MCQ Bank</a>
+					<a href="mcq_bank.php" class="btn btn-primary">View MCQ Bank</a>
 				</div>
 			</div>
 		</div>

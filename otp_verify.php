@@ -7,8 +7,8 @@ include('master_page/header.php');
 $otp = $_SESSION['otp'];
 if (isset($_SESSION['admin_e'])) {
      $email = $_SESSION['admin_e'];
-} else if (isset($_SESSION['staff_email'])) {
-     $email = $_SESSION['staff_email'];
+} else if (isset($_SESSION['staff_e'])) {
+     $email = $_SESSION['staff_e'];
 } else if (isset($_SESSION['student_email'])) {
      $email = $_SESSION['student_email'];
 } else {
@@ -40,7 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                if (isset($_SESSION['admin_e'])) {
                     $_SESSION['admin_email'] = $email;
                     header("location: admin_home.php");
-               } else if (isset($_SESSION['staff_email'])) {
+               } else if (isset($_SESSION['staff_e'])) {
+                    $_SESSION['staff_email'] = $email;
                     header("location: staff_home.php");
                } else if (isset($_SESSION['student_email'])) {
                     header("location: student_home.php");

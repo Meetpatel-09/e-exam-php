@@ -3,7 +3,22 @@ $title = "Home";
 require_once "web_config/config.php";
 include('master_page/header.php');
 
-// if (isset($_SESSION['adminEmail'])) {
+if (isset($_SESSION['admin_email'])) {
+
+
+	function function_alert($message)
+	{
+		// Display the alert box 
+		echo "<script>alert('$message');</script>";
+	}
+	// Function call
+	// function_alert("Welcome to Geeks for Geeks");
+	
+	if (isset($_SESSION['added'])) {
+		function_alert($_SESSION['added']);
+		unset($_SESSION['added']);
+	}
+
 ?>
 <div style="padding:15px;">
 	<div style="margin-top: 15px;">
@@ -41,7 +56,7 @@ include('master_page/header.php');
 			<div class="card">
 				<img src="images/qb.png" class="card-img-top" alt="...">
 				<div class="card-body">
-					<a href="approve_mcq_bank.php" class="btn btn-primary">Approve MCQ Bank</a>
+					<a href="mcq_bank.php" class="btn btn-primary">Approve MCQ Bank</a>
 					<!-- <a href="" class="btn btn-primary">View MCQ Bank</a> -->
 				</div>
 			</div>
@@ -50,8 +65,8 @@ include('master_page/header.php');
 			<div class="card">
 				<img src="images/Generic-calendar-page-icon.png" class="card-img-top" alt="...">
 				<div class="card-body">
-					<a href="" class="btn btn-primary">Add Exam</a>
-					<a href="" class="btn btn-primary">View Exam</a>
+					<a href="add_exam.php" class="btn btn-primary">Add Exam</a>
+					<a href="view_exam.php" class="btn btn-primary">View Exam</a>
 				</div>
 			</div>
 		</div>
@@ -66,8 +81,8 @@ include('master_page/header.php');
 	</div>
 </div>
 <?php
-// } else {
-// header("location: index.php");
-// }
+} else {
+header("location: index.php");
+}
 include('master_page/footer.php');
 ?>

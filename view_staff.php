@@ -48,7 +48,7 @@ if (isset($_SESSION['added'])) {
                                     <td><?php echo $row['phone'] ?></td>
                                     <td><?php echo $row['address'] ?></td>
                                     <td><?php echo $row['branch'] ?></td>
-                                    <td><button type="button" class="btn btn-danger">Remove</button></td>
+                                    <td><a href="delete_staff.php?staff_id=<?php echo $row['faculty_id'] ?>" type="button" class="btn btn-danger">Remove</a></td>
                                 </tr>
                             <?php } ?>
                         </tbody>

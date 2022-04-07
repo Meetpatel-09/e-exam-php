@@ -12,6 +12,11 @@ function function_alert($message)
 // Function call
 // function_alert("Welcome to Geeks for Geeks");
 
+if (isset($_SESSION['deleted'])) {
+     function_alert("MCQ Bank Deleted Successfuly.");
+     unset($_SESSION['deleted']);
+}
+
 ?>
 
 <div style="margin-top: 15px;">
@@ -44,7 +49,7 @@ function function_alert($message)
                                              <td><?php echo $row['branch'] ?></td>
                                              <td><?php echo $row['semester'] ?></td>
                                              <td><?php echo $row['subject'] ?></td>
-                                             <td><a href="view_mcq_bank2.php?mcq_bank_id=<?php echo $row['mcq_bank_id'] ?>" type="submit" class="btn btn-primary">View</a></td>
+                                             <td><a href="view_mcq_bank2.php?mcq_bank_id=<?php echo $row['mcq_bank_id'] ?>" type="submit" class="btn btn-primary">View</button></td>
                                         </tr>
                                    <?php } ?>
                               </tbody>

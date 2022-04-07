@@ -1,6 +1,6 @@
 <?php
 
-$title = "Approve MCQ Banks";
+$title = "View Exam";
 require_once "web_config/config.php";
 include('master_page/header.php');
 
@@ -44,7 +44,7 @@ function function_alert($message)
                                              <td><?php echo $row['branch'] ?></td>
                                              <td><?php echo $row['semester'] ?></td>
                                              <td><?php echo $row['subject'] ?></td>
-                                             <td><a href="view_mcq_bank2.php?mcq_bank_id=<?php echo $row['mcq_bank_id'] ?>" type="submit" class="btn btn-primary">View</button></td>
+                                             <td><a href="view_mcq_bank2.php?mcq_bank_id=<?php echo $row['mcq_bank_id'] ?>" type="submit" class="btn btn-primary">View</a></td>
                                         </tr>
                                    <?php } ?>
                               </tbody>

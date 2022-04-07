@@ -38,7 +38,23 @@ if (isset($_POST['approve'])) {
           function_alert("Something went wrong!!!");
      }
 }
+
 if (isset($_POST['reject'])) {
+     $sql1 = "DELETE FROM mcq_bank WHERE mcq_bank_id = '$mcqBankId'";
+
+     $result2 = mysqli_query($conn, $sql);
+
+     $sql2 = "DELETE FROM mcq_bank_questions WHERE mcq_bank_id = '$mcqBankId'";
+
+     $result2 = mysqli_query($conn, $sql);
+     
+     if ($result2) {
+          
+          $_SESSION['deleted'] = $email;
+          header("location: approve_mcq_bank.php");
+     } else {
+          function_alert("Something went wrong!!!");
+     }
 }
 
 
