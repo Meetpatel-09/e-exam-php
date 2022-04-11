@@ -8,5 +8,4 @@
      $result = mysqli_query($conn, $sql);
 
      header("location: view_student2.php");
-
 ?>

@@ -40,18 +40,12 @@ if (isset($_POST['approve'])) {
 }
 
 if (isset($_POST['reject'])) {
-     $sql1 = "DELETE FROM mcq_bank WHERE mcq_bank_id = '$mcqBankId'";
+     $sql = "UPDATE mcq_bank SET is_approved = '0' WHERE mcq_bank_id = '$mcqBankId'";
 
-     $result2 = mysqli_query($conn, $sql);
+     $result = mysqli_query($conn, $sql);
 
-     $sql2 = "DELETE FROM mcq_bank_questions WHERE mcq_bank_id = '$mcqBankId'";
-
-     $result2 = mysqli_query($conn, $sql);
-     
-     if ($result2) {
-          
-          $_SESSION['deleted'] = $email;
-          header("location: approve_mcq_bank.php");
+     if ($result) {
+          function_alert("MCQ Bank Disapproved.");
      } else {
           function_alert("Something went wrong!!!");
      }
@@ -77,20 +71,43 @@ if (isset($_POST['reject'])) {
                     ?>
                          <div class="scp-quizzes-main">
                               <div class="scp-quizzes-data">
-                                   <h3><?php echo $i;
+                                   <h3>
+                                        <?php echo $i;
                                         echo ". ";
-                                        echo $row['question'] ?></h3>
+                                        echo $row['question'] ?>
+                                   </h3>
+
                                    <input type="radio" name="question<?php echo $i ?>">
-                                   <label>A. <?php echo $row['option_a'] ?></label><br />
+                                   <label>
+                                        A. <?php echo $row['option_a'] ?>
+                                   </label>
+
+                                   <br />
+
                                    <input type="radio" name="question<?php echo $i ?>">
-                                   <label>B. <?php echo $row['option_b'] ?></label><br />
+                                   <label>
+                                        B. <?php echo $row['option_b'] ?>
+                                   </label>
+
+                                   <br />
+
                                    <input type="radio" name="question<?php echo $i ?>">
-                                   <label>C. <?php echo $row['option_c'] ?></label> <br />
+                                   <label>
+                                        C. <?php echo $row['option_c'] ?>
+                                   </label>
+
+                                   <br />
+
                                    <input type="radio" name="question<?php echo $i ?>">
-                                   <label>D. <?php echo $row['option_d'] ?></label>
+                                   <label>
+                                        D. <?php echo $row['option_d'] ?>
+                                   </label>
+
                               </div>
                               <br />
                          </div>
+
+
                     <?php
                     }
 
@@ -103,7 +120,7 @@ if (isset($_POST['reject'])) {
                                         <button type="submit" name="approve" class="btn btn-success col-md-3">Approve</button>
                                    </div>
                                    <div class="col" style="text-align: center">
-                                        <button type="submit" name="reject" class="btn btn-danger col-md-3">Reject</button>
+                                        <button type="submit" name="reject" class="btn btn-danger col-md-3">Disapprove</button>
                                    </div>
                               </div>
                          </form>

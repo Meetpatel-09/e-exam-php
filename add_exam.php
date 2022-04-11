@@ -135,10 +135,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                    <input type="text" class="form-control" id="exampleInputName" name="exampleInputName" placeholder="Subject Name" value="<?php $fname ?>">
                               </div>
                               <div style="margin-top:15px;"></div>
-                              <div class="form-group">
-                                   <label for="exampleInputDate">Select Date</label>
-                                   <div style="margin-top:15px;"></div>
-                                   <input type="date" class="form-control" id="exampleInputDate" name="exampleInputDate" placeholder="Exam Date" value="<?php echo date("Y-m-d"); ?>">
+
+                              <div class="row g-3">
+                                   <div class="col">
+                                        <label for="exampleInputOutOfMarks">Total Marks</label>
+                                        <div style="margin-top:15px;"></div>
+                                        <input type="number" class="form-control" id="exampleInputOutOfMarks" name="exampleInputOutOfMarks" placeholder="Total Marks">
+                                   </div>
+                                   <div class="col">
+                                        <label for="exampleInputDate">Select Date</label>
+                                        <div style="margin-top:15px;"></div>
+                                        <input type="date" class="form-control" id="exampleInputDate" name="exampleInputDate" placeholder="Exam Date" value="<?php echo date("Y-m-d"); ?>">
+                                   </div>
                               </div>
                               <div style="margin-top:15px;"></div>
 
@@ -153,12 +161,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                         <div style="margin-top:15px;"></div>
                                         <input type="time" class="form-control" id="exampleInputEndTime" name="exampleInputEndTime" placeholder="Exam End At Time">
                                    </div>
-                              </div>
-                              <div style="margin-top:15px;"></div>
-                              <div class="form-group">
-                                   <label for="exampleInputOutOfMarks">Out Of Marks</label>
-                                   <div style="margin-top:15px;"></div>
-                                   <input type="number" class="form-control" id="exampleInputOutOfMarks" name="exampleInputOutOfMarks" placeholder="Out Of Marks">
                               </div>
                               <div style="margin-top:15px;"></div>
 

@@ -27,24 +27,34 @@ function function_alert($message)
                          <table width="100%" class="table table-bordered border-primary">
                               <tbody>
                                    <tr>
-                                        <th width="7%" scope="col">Sr No.</th>
-                                        <th width="10%" scope="col">Branch</th>
+                                        <th width="5%" scope="col">Sr No.</th>
+                                        <th width="10%" scope="col">Subject Name</th>
+                                        <th width="10%" scope="col">Branch</th> 
                                         <th width="10%" scope="col">Semester</th>
-                                        <th width="10%" scope="col">Subject</th>
-                                        <th width="11%" scope="col">View</th>
+                                        <th width="10%" scope="col">Exam Total Marks</th>
+                                        <th width="10%" scope="col">Date</th>
+                                        <th width="10%" scope="col">Start Time</th>
+                                        <th width="10%" scope="col">End Time</th>
+                                        <!-- <th width="10%" scope="col">Modify</th> -->
+                                        <th width="10%" scope="col">View</th>
                                    </tr>
                                    <?php
                                    $srNo = 0;
-                                   $sql1 = mysqli_query($conn, "SELECT * FROM mcq_bank");
+                                   $sql1 = mysqli_query($conn, "SELECT * FROM exam");
                                    while ($row = mysqli_fetch_array($sql1)) {
                                         $srNo++;
                                    ?>
                                         <tr>
                                              <td><?php echo $srNo; ?></td>
+                                             <td><?php echo $row['s_name'] ?></td>
                                              <td><?php echo $row['branch'] ?></td>
                                              <td><?php echo $row['semester'] ?></td>
-                                             <td><?php echo $row['subject'] ?></td>
-                                             <td><a href="view_mcq_bank2.php?mcq_bank_id=<?php echo $row['mcq_bank_id'] ?>" type="submit" class="btn btn-primary">View</a></td>
+                                             <td><?php echo $row['out_of_makes'] ?></td>
+                                             <td><?php echo $row['date'] ?></td>
+                                             <td><?php echo $row['start_time'] ?></td>
+                                             <td><?php echo $row['end_time'] ?></td>
+                                             <!-- <td><a href="modify_exam.php?exam_id=<?php echo $row['exam_id'] ?>" type="submit" class="btn btn-warning">Modify</a></td> -->
+                                             <td><a href="delete_exam.php?exam_id=<?php echo $row['exam_id'] ?>" type="submit" class="btn btn-danger">Remove</a></td>
                                         </tr>
                                    <?php } ?>
                               </tbody>

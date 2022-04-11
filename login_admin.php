@@ -12,11 +12,6 @@ function function_alert($message)
 // Function call
 // function_alert("Welcome to Geeks for Geeks");
 
-// function function_show_spinner() {
-//      // Display the alert box 
-//      echo '<script> </script>';
-// }
-
 $email = "";
 $email_err = "";
 
@@ -74,7 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
           }
      }
 }
+
 ?>
+
 <div class="form-design">
      <div class="container" style="margin-top: 25px;">
           <div class="row">

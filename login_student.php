@@ -12,18 +12,11 @@ function function_alert($message)
 // Function call
 // function_alert("Welcome to Geeks for Geeks");
 
-// function function_show_spinner() {
-//      // Display the alert box 
-//      echo '<script> </script>';
-// }
-
 $email = "";
 $email_err = "";
 
 // if request method is post
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-     // function_show_spinner();
 
      // Check if email is empty
      if (empty(trim($_POST['exampleInputEmail1']))) {
@@ -34,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
      }
 
      if (empty($email_err)) {
-          $sql = "SELECT student_id, email FROM student WHERE email = ?";
+          $sql = "SELECT student_id, name, roll_no, email, branch, semester FROM student WHERE email = ?";
           $stmt = mysqli_prepare($conn, $sql);
           mysqli_stmt_bind_param($stmt, "s", $param_email);
           $param_email = $email;
@@ -44,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                mysqli_stmt_store_result($stmt);
                if (mysqli_stmt_num_rows($stmt) == 1) {
 
-                    mysqli_stmt_bind_result($stmt, $id, $email);
+                    mysqli_stmt_bind_result($stmt, $id, $name, $roll_no, $email, $branch, $semester);
                     if (mysqli_stmt_fetch($stmt)) {
 
                          $otp = mt_rand(111111, 999999);
@@ -62,6 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                          $_SESSION['otp'] = $otp;
                          $_SESSION['student_email'] = $email;
                          $_SESSION['is_sent'] = $isSent;
+                         $_SESSION['branch'] = $branch;
+                         $_SESSION['semester'] = $semester;
+                         $_SESSION['name'] = $name;
+                         $_SESSION['roll_no'] = $roll_no;
                          header("location: otp_verify.php");
                     } else {
                          function_alert("Internal server error");
@@ -74,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
           }
      }
 }
+
 ?>
 
 <div class="form-design">
@@ -94,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                               <div style="margin-top:15px;"></div>
                               <div style="text-align:center">
                                    <div style="margin-top:15px;"></div>
-                                   <button type="submit" class="btn btn-primary col-6">Get OTP</button>
+                                   <button type="submit" class="btn btn-primary col-6" onclick="spinner()">Get OTP</button>
                               </div>
                          </form>
                     </div>
@@ -102,8 +100,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                <div class="col-md-4">
                </div>
           </div>
+          <div style="text-align:center; visibility: hidden;" id="loadingSpinner">
+               <div class="spinner-border" style="text-align: center;" role="status"><span class="visually-hidden">Loading...</span></div>
+          </div>
      </div>
 </div>
+
+<script type="text/javascript">
+     function spinner() {
+          document.getElementById("loadingSpinner").style.visibility = "visible"
+     }
+</script>
 
 <?php
 include('master_page/footer.php');
