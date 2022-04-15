@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
      } else {
           $semester = trim($_POST['inputSemester']);
      }
-     
+
      // Check if full name is empty
      if (empty(trim($_POST["exampleInputOutOfMarks"]))) {
           $outOfMarks_err = "Please Enter Marks";
@@ -61,33 +61,32 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
      if (empty($sName_err) && empty($branch_err) && empty($semester_err) && empty($outOfMarks_err)) {
 
           $query = "INSERT INTO exam(s_name,branch,semester,out_of_makes,date,start_time,end_time) VALUES(?, ?, ?, ?, ?, ?, ?)";
-			$stmt = mysqli_prepare($conn, $query);
-            if($stmt) {
-				mysqli_stmt_bind_param($stmt, "sssssss", $param_s_name, $param_b_name , $param_semester, $param_out_of_marks , $param_exam_date, $param_start_time , $param_end_time);
+          $stmt = mysqli_prepare($conn, $query);
+          if ($stmt) {
+               mysqli_stmt_bind_param($stmt, "sssssss", $param_s_name, $param_b_name, $param_semester, $param_out_of_marks, $param_exam_date, $param_start_time, $param_end_time);
 
-				// Set this parameters
+               // Set this parameters
 
-				$param_s_name = $sName;
-				$param_b_name = $branch;
-				$param_semester = $semester;
-				$param_out_of_marks = $outOfMarks;
-				$param_exam_date = $exam_date;
-				$param_start_time = $exam_start_at;
-				$param_end_time = $exam_end_at;
+               $param_s_name = $sName;
+               $param_b_name = $branch;
+               $param_semester = $semester;
+               $param_out_of_marks = $outOfMarks;
+               $param_exam_date = $exam_date;
+               $param_start_time = $exam_start_at;
+               $param_end_time = $exam_end_at;
 
-				// Try to execute the query
-				if(mysqli_stmt_execute($stmt)) {
-                    $_SESSION['added'] = "Subject added successfully";
+               // Try to execute the query
+               if (mysqli_stmt_execute($stmt)) {
+                    $_SESSION['added'] = "Exam added successfully";
                     // function_alert("Subject added successfully");
                     header("location: admin_home.php");
-                } else {
+               } else {
                     function_alert("Something went wrong");
-                }
-            }
-            mysqli_stmt_close($stmt);
-        }
-        mysqli_close($conn);
-
+               }
+          }
+          mysqli_stmt_close($stmt);
+     }
+     mysqli_close($conn);
 }
 ?>
 
@@ -129,10 +128,58 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                    </select>
                               </div>
                               <div style="margin-top:15px;"></div>
+                              <?php
+                              function query($a, $b)
+                              {
+                                   echo $b;
+                              }
+                              ?>
+                              <script>
+                                   function getData() {
+                                        var subjectIdNode1 = document.getElementById('inputBranch');
+                                        var value1 =
+                                             subjectIdNode1.options[subjectIdNode1.selectedIndex].text;
+                                        console.log("The selected value=" + value1);
+
+                                        <?php $b_name = "document.write(value1);"; ?>
+
+                                        var subjectIdNode2 = document.getElementById('inputSemester');
+                                        var value2 =
+                                             subjectIdNode2.options[subjectIdNode2.selectedIndex].text;
+                                        console.log("The selected value=" + value2);
+
+                                        <?php $sem = "document.write(value2)"; ?>
+
+                                        <?php query(1, $sem); ?>
+
+                                        <?php
+
+                                        $sql = mysqli_query($conn, "SELECT s_name FROM subject WHERE b_name = 'document.write(value1)' AND semester = 'document.write(value2)'");
+
+                                        echo $row = mysqli_fetch_array($sql);
+
+                                        while ($row = mysqli_fetch_array($sql)) {
+                                             echo $row['s_name'];
+                                        }
+                                        ?>
+                                   }
+                              </script>
+                               <?php $sem = "document.write(value2)"; ?>   
                               <div class="form-group">
                                    <label for="exampleInputName">Subject Name</label>
-                                   <div style="margin-top:15px;"></div>
-                                   <input type="text" class="form-control" id="exampleInputName" name="exampleInputName" placeholder="Subject Name" value="<?php $fname ?>">
+                                   <div style="margin-top:10px;"></div>
+                                   <select id="inputSemester" name="inputSemester" class="form-select" onchange="getData()">
+                                        <option selected>Choose</option>
+
+                                        <?php
+                                        while ($row = mysqli_fetch_array($sql)) {
+                                        ?>
+                                             <option><?php echo $row['s_name']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+
+                                   </select>
                               </div>
                               <div style="margin-top:15px;"></div>
 

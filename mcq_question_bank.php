@@ -7,6 +7,7 @@ require_once "web_config/config.php";
 
 $mcqBankId = $_GET['mcq_bank_id'];
 $totalMarks = $_GET['totalMarks'];
+$endTime = $_GET['end_time'];
 
 include('master_page/header.php');
 
@@ -36,43 +37,51 @@ while ($row4 = mysqli_fetch_array($sql1)) {
 
 if (isset($_POST['submit'])) {
 
-     $indexOne = 0;
-     $marks = 0;
+     date_default_timezone_set('Asia/Kolkata');
+     $current_time = date('H:i');
 
-     $sql2 = mysqli_query($conn, "SELECT * FROM mcq_bank_questions WHERE mcq_bank_id = '$mcqBankId' ORDER BY mcq_id");
-     while ($row2 = mysqli_fetch_array($sql2)) {
-          $indexOne++;
-          if (isset($_POST['question' . $indexOne])) {
+     if ($endTime < $current_time) {
+          function_alert("Exam Time Out!!!");
+     } else {
 
-               if ($_POST['question' . $indexOne] == $row2['correct_answer']) {
-                    $marks++;
+          $indexOne = 0;
+          $marks = 0;
+
+          $sql2 = mysqli_query($conn, "SELECT * FROM mcq_bank_questions WHERE mcq_bank_id = '$mcqBankId' ORDER BY mcq_id");
+          while ($row2 = mysqli_fetch_array($sql2)) {
+               $indexOne++;
+               if (isset($_POST['question' . $indexOne])) {
+
+                    if ($_POST['question' . $indexOne] == $row2['correct_answer']) {
+                         $marks++;
+                    }
                }
           }
-     }
 
-     $query = "INSERT INTO results(name, roll_no, branch, semester, subject, date, marks, totalMarks) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-     $stmt = mysqli_prepare($conn, $query);
-     if ($stmt) {
+          $query = "INSERT INTO results(name, roll_no, branch, semester, subject, date, marks, totalMarks) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+          $stmt = mysqli_prepare($conn, $query);
+          if ($stmt) {
 
-          mysqli_stmt_bind_param($stmt, "ssssssss", $param_name, $param_roll_no, $param_branch, $param_semester, $param_subject, $param_date, $param_marks, $param_total_marks);
+               mysqli_stmt_bind_param($stmt, "ssssssss", $param_name, $param_roll_no, $param_branch, $param_semester, $param_subject, $param_date, $param_marks, $param_total_marks);
 
-          $param_name = $name;
-          $param_roll_no = $roll_no;
-          $param_branch = $branch;
-          $param_semester = $semester;
-          $param_subject = $subject;
-          $param_date = $date;
-          $param_marks = $marks;
-          $param_total_marks = $totalMarks;
-     }
-     // Try to execute the query
-     if (mysqli_stmt_execute($stmt)) {
-          // echo "success";
-          $_SESSION['success'] = "Yes";
-          header("location: student_home.php");
-     } else {
-          echo "error";
-          // header("location: att4err.php");
+               $param_name = $name;
+               $param_roll_no = $roll_no;
+               $param_branch = $branch;
+               $param_semester = $semester;
+               $param_subject = $subject;
+               $param_date = $date;
+               $param_marks = $marks;
+               $param_total_marks = $totalMarks;
+          }
+          // Try to execute the query
+          if (mysqli_stmt_execute($stmt)) {
+               // echo "success";
+               $_SESSION['success'] = "Yes";
+               header("location: student_home.php");
+          } else {
+               echo "error";
+               // header("location: att4err.php");
+          }
      }
 }
 
