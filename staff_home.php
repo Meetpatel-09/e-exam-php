@@ -73,7 +73,7 @@ function function_alert($message)
 			<div class="card">
 				<img src="images/student-attendance-icon-2.jpg" class="card-img-top" alt="...">
 				<div class="card-body">
-					<a href="" class="btn btn-primary">View Results</a>
+					<a href="view_result.php" class="btn btn-primary">View Results</a>
 				</div>
 			</div>
 		</div>

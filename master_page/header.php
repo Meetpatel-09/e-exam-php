@@ -159,7 +159,7 @@ session_start();
                               }
                               ?>
                          </li>
-                         <li class="nav-item">
+                         <!-- <li class="nav-item">
                               <?php
                               if ($title == "FAQ") { // means user is logged in
                               ?>
@@ -171,7 +171,7 @@ session_start();
                               <?php
                               }
                               ?>
-                         </li>
+                         </li> -->
                          <?php
                          if (isset($_SESSION['admin_email']) || isset($_SESSION['staff_email']) || isset($_SESSION['student_email'])) { // means user is logged in
                          } else {

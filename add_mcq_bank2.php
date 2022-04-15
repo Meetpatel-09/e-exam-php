@@ -17,13 +17,14 @@ error_reporting(E_ERROR);
 
 $branch = $_SESSION['branch'];
 $semester = $_SESSION['semester'];
-$subject = $_SESSION['sName'];
 
 if (isset($_POST['submit'])) {
 
      // echo '<pre>';
      // print_r($_FILES);
      // echo '</pre>';
+
+     $subject = $_POST['inputSubject'];
 
      $file = $_FILES['doc']['tmp_name'];
 
@@ -80,6 +81,25 @@ if (isset($_POST['submit'])) {
                     <div class="card" style="padding:25px;">
                          <h3 style="text-align: center">Add MCQ Bank</h3>
                          <form method="post" enctype="multipart/form-data">
+                              <div class="form-group">
+                                   <?php
+                                   $sql = mysqli_query($conn, "SELECT s_name FROM subject WHERE b_name = '$branch' AND semester = '$semester'");
+                                   ?>
+                                   <label for="inputSubject">Subject Name</label>
+                                   <div style="margin-top:10px;"></div>
+                                   <select id="inputSubject" name="inputSubject" class="form-select">
+                                        <option selected>Choose</option>
+
+                                        <?php
+                                        while ($row = mysqli_fetch_array($sql)) {
+                                        ?>
+                                             <option><?php echo $row['s_name']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+
+                                   </select>
+                              </div>
                               <div style="margin-top:15px;"></div>
                               <div class="form-group">
                                    <label for="staffExcelFile">Select Excel Sheet</label>
