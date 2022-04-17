@@ -3,9 +3,9 @@
 require('vendor/autoload.php');
 require_once "web_config/config.php";
 
-$branch = $_SESSION["branch"];
-$semester = $_SESSION["semester"];
-$date = $_SESSION["date"];
+$branch = $_GET["branch"];
+$semester = $_GET["semester"];
+$date = $_GET["date"];
 
 $html = '
 
