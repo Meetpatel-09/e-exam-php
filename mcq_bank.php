@@ -54,7 +54,7 @@ if (isset($_POST['disapprove'])) {
                </div>
                <div class="col-sm-10">
                     <div style="text-align: center">
-                    
+
                          <table width="100%" class="table table-bordered border-primary">
                               <tbody>
                                    <tr>
@@ -74,16 +74,14 @@ if (isset($_POST['disapprove'])) {
                                    ?>
                                         <tr>
                                              <td><?php echo $srNo; ?></td>
-                                             <!-- <td><?php // echo $row['subject'] . $row['mcq_bank_id'] ?></td> -->
                                              <td><?php echo $row['branch'] ?></td>
                                              <td><?php echo $row['subject'] ?></td>
                                              <td><?php echo $row['semester'] ?></td>
                                              <td><?php echo ($row['is_approved'] == 1) ? 'Yes' :  'No'; ?></td>
-                                             
-                    <form action="" method="post">
-                         <!-- <td><buton type="submit" name="<?php // echo ($row['is_approved'] == 1) ? 'disapprove' :  'approve'; ?>" class="btn <?php // echo ($row['is_approved'] == 1) ? 'btn-danger' :  'btn-primary'; ?>"><?php // echo ($row['is_approved'] == 1) ? 'Disapprove' :  'Approve'; ?></button></td> -->
-                                             <td><a href="view_mcq_bank2.php?mcq_bank_id=<?php echo $row['mcq_bank_id'] ?>" type="submit" class="btn btn-primary">View</button></td>
-                    </form>
+
+                                             <form action="" method="post">                                                                                                                                                                                                         ?></button></td> -->
+                                                  <td><a href="view_mcq_bank2.php?mcq_bank_id=<?php echo $row['mcq_bank_id'] ?>" type="submit" class="btn btn-primary">View</button></td>
+                                             </form>
                                         </tr>
                                    <?php } ?>
                               </tbody>

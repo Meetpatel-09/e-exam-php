@@ -29,7 +29,19 @@ $date = $_SESSION["date"];
                     <div style="margin-top: 15px;">
                     </div>
                     <div>
-                         <table width="100%" class="table table-bordered border-primary text-center align-middle">
+                         <table width="100%" class="table table-bordered text-center align-middle">
+
+                         <?php
+                              $sql4 = "SELECT * FROM results WHERE branch='$branch' AND semester='$semester' AND date='$date'";
+                              $result4 = mysqli_query($conn, $sql4);
+                              if (mysqli_num_rows($result4) > 0) {
+                                   while ($row4 = mysqli_fetch_array($result4)) {
+                                        
+                                        $subject2 = $row4['subject'];
+                                        $totalMarks2 = $row4['totalMarks'];
+                                   }
+                         ?>
+
                               <tbody>
                                    <tr>
                                         <th width="10%" scope="col">Roll Number</th>
@@ -45,11 +57,14 @@ $date = $_SESSION["date"];
                                    $sql1 = mysqli_query($conn, "SELECT * FROM student WHERE branch='$branch' AND semester='$semester' ORDER BY roll_no");
                                    while ($row = mysqli_fetch_array($sql1)) {
                                         $roll_no =  $row['roll_no'];
+                                        $fname = $row['name'];
                                         $sql3 = "SELECT * FROM results WHERE branch='$branch' AND semester='$semester' AND date='$date' AND roll_no='$roll_no';";
                                         $result3 = mysqli_query($conn, $sql3);
 
                                         if (mysqli_num_rows($result3) > 0) {
                                              while ($row3 = mysqli_fetch_assoc($result3)) {
+
+                                                  $roll_no2 = $row3['roll_no'];
                                                   $fname3 = $row3['name'];
                                                   $marks = $row3['marks'];
                                                   $subject = $row3['subject'];
@@ -71,9 +86,29 @@ $date = $_SESSION["date"];
                                         </tr>
                                    <?php
 
+                                        } else {
+                                             ?>
+                                             <tr class="table-danger">
+                                             <td><?php echo $roll_no; ?></td>
+                                             <td><?php echo $fname; ?></td>
+                                             <td><?php echo $subject2; ?></td>
+                                             <td><?php echo 'Absent'; ?></td>
+                                             <td><?php echo $totalMarks2; ?></td>
+                                             <td>
+                                                  <a href="view_result_s2.php?roll_no=<?php echo $roll_no; ?>" type="submit" class="btn btn-primary">View</a>
+                                             </td>
+                                        </tr>
+
+                                   <?php
                                         }
                                    }
+                              } else {
+                                   ?>
 
+                                   <div class="center text-center"><h3>No Exam</h3></div>
+
+                                   <?php 
+                              }
                                    ?>
                               </tbody>
                          </table>

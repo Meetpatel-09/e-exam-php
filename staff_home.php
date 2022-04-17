@@ -22,35 +22,6 @@ function function_alert($message)
 		<div class="col-md-3 text-center" style="padding:15px;">
 
 		</div>
-
-
-		<!-- <div class="col-md-3 text-center" style="padding:15px;">
-				<div class="card">
-				<img src="images/admin.png" class="card-img-top" alt="...">
-				<div class="card-body">
-					<a href="" class="btn btn-primary">Add Admin</a>
-					<a href="" class="btn btn-primary">View Admins</a>
-				</div>
-				</div>
-			</div> -->
-		<!-- <div class="col-md-3 text-center" style="padding:15px;">
-				<div class="card">
-				<img src="images/jpg.jfif" class="card-img-top" alt="...">
-				<div class="card-body">
-					<a href="add_staff.php" class="btn btn-primary">Add Staff</a>
-					<a href="view_staff.php" class="btn btn-primary">View Staff</a>
-				</div>
-				</div>
-			</div> -->
-		<!-- <div class="col-md-3 text-center" style="padding:15px;">
-				<div class="card">
-				<img src="images/PngItem_3018951.png" class="card-img-top" alt="...">
-				<div class="card-body">
-					<a href="add_student.php" class="btn btn-primary">Add Student</a>
-					<a href="view_students.php" class="btn btn-primary">View Students</a>
-				</div>
-				</div>
-			</div> -->
 		<div class="col-md-3 text-center" style="padding:15px;">
 			<div class="card">
 				<img src="images/qb.png" class="card-img-top" alt="...">
@@ -60,15 +31,6 @@ function function_alert($message)
 				</div>
 			</div>
 		</div>
-		<!-- <div class="col-md-3 text-center" style="padding:15px;">
-				<div class="card">
-				<img src="images/Generic-calendar-page-icon.png" class="card-img-top" alt="...">
-				<div class="card-body">
-					<a href="" class="btn btn-primary">Add Exam</a>
-					<a href="" class="btn btn-primary">View Exam</a>
-				</div>
-				</div>
-			</div> -->
 		<div class="col-md-3 text-center" style="padding:15px;">
 			<div class="card">
 				<img src="images/student-attendance-icon-2.jpg" class="card-img-top" alt="...">

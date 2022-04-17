@@ -12,8 +12,27 @@ function function_alert($message)
 // Function call
 // function_alert("Welcome to Geeks for Geeks");
 
-if(isset($_SESSION['success'])) {
+if (isset($_SESSION['success'])) {
+
      function_alert("Exam submited Successfully");
+
+     $marks = $_SESSION['marks'];
+     $subject1 = $_SESSION['subject'];
+     $date = $_SESSION['date'];
+     $email = $_SESSION['student_email'];
+     $total_marks = $_SESSION['totalMarks'];
+
+     $to_email = $email;
+     $subject = "Exam Result";
+     $body = "Hello, You have scored $marks marks out of $total_marks in $subject1 on $date";
+     $headers = "From: group7915@gmail.com";
+
+     $isSent = "non";
+     if (mail($to_email, $subject, $body, $headers)) {
+          $isSent = "true";
+     } else {
+          $isSent = "false";
+     }
      unset($_SESSION['success']);
 }
 
@@ -72,7 +91,7 @@ if (isset($_POST['submit'])) {
                     <div class="card">
                          <img src="images/student-attendance-icon-2.jpg" class="card-img-top" alt="...">
                          <div class="card-body">
-                              <a href="view_result.php" class="btn btn-primary">View Results</a>
+                              <a href="view_result_s.php" class="btn btn-primary">View Results</a>
                          </div>
                     </div>
                </div>

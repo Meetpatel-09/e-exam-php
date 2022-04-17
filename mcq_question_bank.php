@@ -11,8 +11,7 @@ $endTime = $_GET['end_time'];
 
 include('master_page/header.php');
 
-function function_alert($message)
-{
+function function_alert($message) {
      // Display the alert box 
      echo "<script>alert('$message');</script>";
 }
@@ -34,6 +33,7 @@ while ($row4 = mysqli_fetch_array($sql1)) {
      $semester = $row4['semester'];
      $subject = $row4['subject'];
 }
+
 
 if (isset($_POST['submit'])) {
 
@@ -76,7 +76,10 @@ if (isset($_POST['submit'])) {
           // Try to execute the query
           if (mysqli_stmt_execute($stmt)) {
                // echo "success";
+               $_SESSION['marks'] = $marks;
                $_SESSION['success'] = "Yes";
+               $_SESSION['subject'] = $subject;
+               $_SESSION['totalMarks'] = $totalMarks;
                header("location: student_home.php");
           } else {
                echo "error";
@@ -88,7 +91,7 @@ if (isset($_POST['submit'])) {
 ?>
 
 <div style="margin-top: 15px;">
-     <h3 style="text-align: center">MCQ Banks</h3>
+     <h3 style="text-align: center">MCQ Banks</h3><h4 style="text-align: center">Time Remaining: <?php include('timer.php'); ?></h4>
 </div>
 <div class="form-design">
      <div class="container">
@@ -144,7 +147,6 @@ if (isset($_POST['submit'])) {
                                                   </div>
                                              </label>
 
-
                                         </div>
                                         <br />
 
@@ -156,7 +158,7 @@ if (isset($_POST['submit'])) {
 
                               <div class="row" style="text-align: center">
                                    <div class="col" style="text-align: center">
-                                        <button type="submit" name="submit" class="btn btn-success col-md-3">Submit</button>
+                                        <button type="submit" name="submit" id="submitExam" class="btn btn-success col-md-3">Submit</button>
                                    </div>
                                    <div class="col" style="text-align: center">
                                         <!-- <button type="submit" name="cancel" class="btn btn-danger col-md-3">Cancel</button> -->
