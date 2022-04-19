@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     $_SESSION['staff_email'] = $email;
                     header("location: staff_home.php");
                } else if (isset($_SESSION['student_email'])) {
+                    
                     header("location: student_home.php");
                } else {
                     header("location: home.php");

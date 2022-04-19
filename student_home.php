@@ -12,6 +12,11 @@ function function_alert($message)
 // Function call
 // function_alert("Welcome to Geeks for Geeks");
 
+if (isset($_SESSION['already_given'])) {
+     function_alert("You have already given Exam.");
+     unset($_SESSION['already_given']);
+}
+
 if (isset($_SESSION['success'])) {
 
      function_alert("Exam submited Successfully");
